@@ -1,0 +1,24 @@
+{
+  "name": "rock-paper-scissors-master",
+  "version": "1.0.0",
+  "description": "![Design preview for the Rock, Paper, Scissors coding challenge](./design/desktop-preview.jpg)",
+  "main": "index.js",
+  "scripts": {
+    "build": "sass ./styles/style.scss ./styles/style.css",
+    "dev": "sass -w .:."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wilderav86/rock-paper-scissors.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wilderav86/rock-paper-scissors/issues"
+  },
+  "homepage": "https://github.com/wilderav86/rock-paper-scissors#readme",
+  "dependencies": {
+    "sass": "^1.56.1"
+  }
+}

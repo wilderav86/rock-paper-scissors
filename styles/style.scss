@@ -1,0 +1,49 @@
+@use "reset-css" as *;
+@include reset-css;
+
+$primary: (
+  scissorsGradient: linear-gradient(hsl(39, 89%, 49%), hsl(40, 84%, 53%)),
+  paperGradient: linear-gradient(hsl(230, 89%, 62%), hsl(230, 89%, 65%)),
+  rockGradient: linear-gradient(hsl(349, 71%, 52%), hsl(349, 70%, 56%)),
+  cyanGradient: linear-gradient(hsl(189, 59%, 53%), hsl(189, 58%, 57%)),
+);
+
+@each $name, $gradient in $primary {
+  .#{$name} {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    height: 120px;
+
+    background: $gradient;
+
+    border-radius: 150px;
+    z-index: 10;
+  }
+}
+
+$neutral: (
+  "darkText": hsl(229, 25%, 31%),
+  "scoreText": hsl(229, 64%, 46%),
+  "headerOutline": hsl(217, 16%, 45%),
+);
+
+// background gradient
+$radialGradient: linear-gradient(hsl(214, 47%, 23%), hsl(237, 49%, 15%));
+
+.icon {
+  background: white;
+  color: #222;
+  margin: 1.25rem;
+  // border-radius: 50px;
+
+  z-index: 0;
+  height: 3rem;
+}
+
+.innerCircle {
+  background-color: white;
+  border-radius: 60px;
+  height: 5.2rem;
+}

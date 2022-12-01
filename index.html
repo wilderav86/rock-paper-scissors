@@ -1,37 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | Rock, Paper, Scissors</title>
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
 
-  Score
-  Rules
+    <link rel="stylesheet" href="./styles/style.css" />
 
-  You Picked
-  The House Picked
+    <title>Frontend Mentor | Rock, Paper, Scissors</title>
 
-  You Win
-  You Lose
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style>
+      .attribution {
+        font-size: 11px;
+        text-align: center;
+      }
+      .attribution a {
+        color: hsl(228, 45%, 44%);
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header class="header-container">
+        <div class="title">
+          <p>ROCK</p>
+          <p>PAPER</p>
+          <p>SCISSORS</p>
+        </div>
+        <div class="score">
+          <p>score</p>
+          <p>0</p>
+        </div>
+      </header>
+      <section class="game-board-container">
+        <img src="images/bg-triangle.svg" alt="triangle" />
+        <div id="paper" class="paperGradient">
+          <div class="innerCircle">
+            <img src="images/icon-paper.svg" alt="paper" class="icon" />
+          </div>
+        </div>
 
-  Play Again
+        <div id="scissors" class="scissorsGradient">
+          <div class="innerCircle">
+            <img src="images/icon-scissors.svg" alt="scissors" class="icon" />
+          </div>
+        </div>
+        <div id="rock" class="rockGradient">
+          <div class="innerCircle">
+            <img src="images/icon-rock.svg" alt="rock" class="icon" />
+          </div>
+        </div>
+      </section>
+      <section class="results-container">
+        <div>You Picked</div>
+        <div>The House Picked</div>
+      </section>
+      <section class="play-again-container">
+        <div class="result-message"></div>
+        <button class="play-again-btn">PLAY AGAIN</button>
+      </section>
+      <section class="rules-container">
+        <button class="rules-btn">RULES</button>
+      </section>
+    </main>
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
-</head>
-<body>
-
-
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div>
-</body>
+    <footer class="attribution">
+      Challenge by
+      <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+        >Frontend Mentor</a
+      >. Coded by <a href="#">Your Name Here</a>.
+    </footer>
+    <script src="./index.js"></script>
+  </body>
 </html>
