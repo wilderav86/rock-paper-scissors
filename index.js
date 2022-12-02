@@ -44,13 +44,14 @@ const renderPick = (element, choice) => {
 };
 
 const playerPicks = (playerChoiceElement, playerChoice) => {
+  console.log("player has picked ", playerChoice.name);
   renderPick(playerChoiceElement, playerChoice);
 };
 
 const computerPicks = (houseChoiceElement, cpuChoice) => {
   return new Promise((resolve) => {
     setTimeout(() => {
-      console.log("computer picked", cpuChoice);
+      console.log("computer picked", cpuChoice.name);
       resolve(renderPick(houseChoiceElement, cpuChoice));
     }, 1500);
   });
