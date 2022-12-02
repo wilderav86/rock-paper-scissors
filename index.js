@@ -11,8 +11,8 @@ class gamePiece {
     const randomIndex = Math.floor(Math.random() * 3);
     const cpuChoice = gamePieceArray[randomIndex];
 
-    renderPick(playerChoiceElement, playerChoice);
-    await computerPick(houseChoiceElement, cpuChoice);
+    playerPicks(playerChoiceElement, playerChoice);
+    await computerPicks(houseChoiceElement, cpuChoice);
     await compare(playerChoice, cpuChoice);
   }
 }
@@ -43,12 +43,16 @@ const renderPick = (element, choice) => {
   element.appendChild(clonedNode);
 };
 
-const computerPick = (houseChoiceElement, cpuChoice) => {
+const playerPicks = (playerChoiceElement, playerChoice) => {
+  renderPick(playerChoiceElement, playerChoice);
+};
+
+const computerPicks = (houseChoiceElement, cpuChoice) => {
   return new Promise((resolve) => {
     setTimeout(() => {
       console.log("computer picked", cpuChoice);
       resolve(renderPick(houseChoiceElement, cpuChoice));
-    }, 1000);
+    }, 1500);
   });
 };
 
@@ -83,7 +87,7 @@ const compare = (playerChoice, cpuChoice) => {
         containerRenderControl(playAgainContainer, "block"),
         console.log("result resolved", result)
       );
-    }, 1000);
+    }, 1500);
   });
 };
 
