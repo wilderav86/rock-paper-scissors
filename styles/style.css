@@ -192,4 +192,8 @@ table {
   height: 5.2rem;
 }
 
+.results-container {
+  border: 2px solid red;
+}
+
 /*# sourceMappingURL=style.css.map */
