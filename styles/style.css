@@ -192,8 +192,17 @@ table {
   height: 5.2rem;
 }
 
+.game-board-container {
+  display: flex;
+}
+
 .results-container {
   border: 2px solid red;
+  display: none;
+}
+
+.play-again-container {
+  display: none;
 }
 
 /*# sourceMappingURL=style.css.map */

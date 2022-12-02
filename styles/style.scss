@@ -48,6 +48,15 @@ $radialGradient: linear-gradient(hsl(214, 47%, 23%), hsl(237, 49%, 15%));
   height: 5.2rem;
 }
 
+.game-board-container {
+  display: flex;
+}
+
 .results-container {
   border: 2px solid red;
+  display: none;
+}
+
+.play-again-container {
+  display: none;
 }
