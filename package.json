@@ -4,7 +4,7 @@
   "description": "![Design preview for the Rock, Paper, Scissors coding challenge](./design/desktop-preview.jpg)",
   "main": "index.js",
   "scripts": {
-    "build": "sass ./styles/style.scss ./styles/style.css",
+    "build": "sass .:.",
     "dev": "sass -w .:."
   },
   "repository": {
