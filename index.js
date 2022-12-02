@@ -1,4 +1,3 @@
-//Global
 let score = 0;
 
 //Classes
@@ -11,12 +10,10 @@ class gamePiece {
   async play(playerChoice) {
     const randomIndex = Math.floor(Math.random() * 3);
     const cpuChoice = gamePieceArray[randomIndex];
-    // console.log("cpuChoice", cpuChoice);
 
     renderPick(playerChoiceElement, playerChoice);
     await computerPick(houseChoiceElement, cpuChoice);
     await compare(playerChoice, cpuChoice);
-    // console.log("you picked", playerChoice);
   }
 }
 
@@ -38,14 +35,11 @@ const resultsContainer = document.querySelector(".results-container");
 const playAgainContainer = document.querySelector(".play-again-container");
 
 //Functions
-
 const renderPick = (element, choice) => {
   console.log("pick rendered");
   containerRenderControl(gameBoardContainer, "none");
   containerRenderControl(resultsContainer, "block");
   clonedNode = choice.id.cloneNode(true);
-  // console.log("choice.id", choice.id);
-  // console.log("element", element);
   element.appendChild(clonedNode);
 };
 
@@ -61,8 +55,7 @@ const computerPick = (houseChoiceElement, cpuChoice) => {
 const compare = (playerChoice, cpuChoice) => {
   const playerChose = playerChoice.name;
   const cpuChose = cpuChoice.name;
-  console.log(resultMessage);
-  // console.log("comparefunction", playerChoice, cpuChoice);
+
   return new Promise((resolve) => {
     setTimeout(() => {
       let result = "";
@@ -84,7 +77,6 @@ const compare = (playerChoice, cpuChoice) => {
       ) {
         result = "you lose";
       }
-      // console.log("result:", result);
 
       resolve(
         (resultMessage.textContent = result),
@@ -98,7 +90,6 @@ const compare = (playerChoice, cpuChoice) => {
 const updateScore = () => {
   console.log("score updated");
   score += 1;
-  // console.log("score =", score);
   scoreElement.textContent = score;
 };
 
@@ -108,9 +99,6 @@ const containerRenderControl = (container, visibility) => {
 
 const resetElements = (playerChoiceElement, houseChoiceElement) => {
   console.log("elements reset");
-  // console.log("houseEl", houseChoiceElement);
-  // console.log("playerEl", playerChoiceElement);
-  // console.log("clicked");
   while (
     playerChoiceElement.hasChildNodes() &&
     houseChoiceElement.hasChildNodes()
