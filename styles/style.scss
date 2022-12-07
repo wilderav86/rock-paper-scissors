@@ -1,11 +1,12 @@
 @use "reset-css" as *;
 @include reset-css;
 
+//TODO: FUCK THE LINEAR GRADIENT
 $primary: (
-  scissorsGradient: linear-gradient(hsl(39, 89%, 49%), hsl(40, 84%, 53%)),
-  paperGradient: linear-gradient(hsl(230, 89%, 62%), hsl(230, 89%, 65%)),
-  rockGradient: linear-gradient(hsl(349, 71%, 52%), hsl(349, 70%, 56%)),
-  cyanGradient: linear-gradient(hsl(189, 59%, 53%), hsl(189, 58%, 57%)),
+  scissorsGradient: linear-gradient(hsl(39, 89%, 49%), hsl(40, 84%, 53%)) 1,
+  paperGradient: linear-gradient(hsl(230, 89%, 62%), hsl(230, 89%, 65%)) 1,
+  rockGradient: linear-gradient(hsl(349, 71%, 52%), hsl(349, 70%, 56%)) 1,
+  cyanGradient: linear-gradient(hsl(189, 59%, 53%), hsl(189, 58%, 57%)) 1,
 );
 
 @each $name, $gradient in $primary {
@@ -15,11 +16,13 @@ $primary: (
     align-items: center;
     width: 120px;
     height: 120px;
+    border: 15px solid;
 
-    background: $gradient;
+    border-image: $gradient;
 
-    border-radius: 150px;
-    z-index: 10;
+    // background: $gradient;
+
+    border-radius: 50%;
   }
 }
 
@@ -33,18 +36,16 @@ $neutral: (
 $radialGradient: linear-gradient(hsl(214, 47%, 23%), hsl(237, 49%, 15%));
 
 .icon {
-  background: white;
   color: #222;
-  margin: 1.25rem;
-  // border-radius: 50px;
+  // padding: 1.25rem;
+  // border-radius: 50%;
 
-  z-index: 0;
-  height: 3rem;
+  // height: 3rem;
 }
 
 .innerCircle {
   background-color: white;
-  border-radius: 60px;
+  border-radius: 50%;
   height: 5.2rem;
 }
 
@@ -54,9 +55,11 @@ $radialGradient: linear-gradient(hsl(214, 47%, 23%), hsl(237, 49%, 15%));
 
 .results-container {
   border: 2px solid red;
-  display: none;
 }
 
 .play-again-container {
+}
+
+.disabled {
   display: none;
 }

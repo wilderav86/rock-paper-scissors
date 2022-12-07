@@ -140,9 +140,9 @@ table {
   align-items: center;
   width: 120px;
   height: 120px;
-  background: linear-gradient(hsl(39deg, 89%, 49%), hsl(40deg, 84%, 53%));
-  border-radius: 150px;
-  z-index: 10;
+  border: 15px solid;
+  border-image: linear-gradient(hsl(39deg, 89%, 49%), hsl(40deg, 84%, 53%)) 1;
+  border-radius: 50%;
 }
 
 .paperGradient {
@@ -151,9 +151,9 @@ table {
   align-items: center;
   width: 120px;
   height: 120px;
-  background: linear-gradient(hsl(230deg, 89%, 62%), hsl(230deg, 89%, 65%));
-  border-radius: 150px;
-  z-index: 10;
+  border: 15px solid;
+  border-image: linear-gradient(hsl(230deg, 89%, 62%), hsl(230deg, 89%, 65%)) 1;
+  border-radius: 50%;
 }
 
 .rockGradient {
@@ -162,9 +162,9 @@ table {
   align-items: center;
   width: 120px;
   height: 120px;
-  background: linear-gradient(hsl(349deg, 71%, 52%), hsl(349deg, 70%, 56%));
-  border-radius: 150px;
-  z-index: 10;
+  border: 15px solid;
+  border-image: linear-gradient(hsl(349deg, 71%, 52%), hsl(349deg, 70%, 56%)) 1;
+  border-radius: 50%;
 }
 
 .cyanGradient {
@@ -173,22 +173,18 @@ table {
   align-items: center;
   width: 120px;
   height: 120px;
-  background: linear-gradient(hsl(189deg, 59%, 53%), hsl(189deg, 58%, 57%));
-  border-radius: 150px;
-  z-index: 10;
+  border: 15px solid;
+  border-image: linear-gradient(hsl(189deg, 59%, 53%), hsl(189deg, 58%, 57%)) 1;
+  border-radius: 50%;
 }
 
 .icon {
-  background: white;
   color: #222;
-  margin: 1.25rem;
-  z-index: 0;
-  height: 3rem;
 }
 
 .innerCircle {
   background-color: white;
-  border-radius: 60px;
+  border-radius: 50%;
   height: 5.2rem;
 }
 
@@ -198,10 +194,9 @@ table {
 
 .results-container {
   border: 2px solid red;
-  display: none;
 }
 
-.play-again-container {
+.disabled {
   display: none;
 }
 

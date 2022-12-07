@@ -1,26 +1,17 @@
 let score = 0;
 
 //Classes
-class gamePiece {
+class GamePiece {
   constructor(name) {
     this.name = name;
-    this.id = document.getElementById(name);
-  }
-
-  async play(playerChoice) {
-    const randomIndex = Math.floor(Math.random() * 3);
-    const cpuChoice = gamePieceArray[randomIndex];
-
-    playerPicks(playerChoiceElement, playerChoice);
-    await computerPicks(houseChoiceElement, cpuChoice);
-    await compare(playerChoice, cpuChoice);
+    this.element = document.getElementById(name);
   }
 }
 
 //Gamepieces
-const rock = new gamePiece("rock");
-const paper = new gamePiece("paper");
-const scissors = new gamePiece("scissors");
+const rock = new GamePiece("rock");
+const paper = new GamePiece("paper");
+const scissors = new GamePiece("scissors");
 const gamePieceArray = [rock, paper, scissors];
 
 //Elements
@@ -35,16 +26,26 @@ const resultsContainer = document.querySelector(".results-container");
 const playAgainContainer = document.querySelector(".play-again-container");
 
 //Functions
+
+const play = async (playerChoice) => {
+  const randomIndex = Math.floor(Math.random() * 3);
+  const cpuChoice = gamePieceArray[randomIndex];
+
+  playerPicks(playerChoiceElement, playerChoice);
+  await computerPicks(houseChoiceElement, cpuChoice);
+  await compare(playerChoice, cpuChoice);
+};
+
 const renderPick = (element, choice) => {
   console.log("pick rendered");
-  containerRenderControl(gameBoardContainer, "none");
-  containerRenderControl(resultsContainer, "block");
-  clonedNode = choice.id.cloneNode(true);
+
+  clonedNode = choice.element.cloneNode(true);
   element.appendChild(clonedNode);
 };
 
 const playerPicks = (playerChoiceElement, playerChoice) => {
   console.log("player has picked ", playerChoice.name);
+  toggleContainerVisibility(gameBoardContainer, resultsContainer);
   renderPick(playerChoiceElement, playerChoice);
 };
 
@@ -53,7 +54,7 @@ const computerPicks = (houseChoiceElement, cpuChoice) => {
     setTimeout(() => {
       console.log("computer picked", cpuChoice.name);
       resolve(renderPick(houseChoiceElement, cpuChoice));
-    }, 1500);
+    }, 2500);
   });
 };
 
@@ -65,41 +66,45 @@ const compare = (playerChoice, cpuChoice) => {
     setTimeout(() => {
       let result = "";
 
-      console.log("compared");
-      if (playerChose === cpuChose) {
-        result = "draw";
-      } else if (
+      const winParameters =
         (playerChose === "rock" && cpuChose === "scissors") ||
         (playerChose === "paper" && cpuChose === "rock") ||
-        (playerChose === "scissors" && cpuChose === "paper")
-      ) {
+        (playerChose === "scissors" && cpuChose === "paper");
+
+      if (playerChose === cpuChose) {
+        result = "draw";
+        updateScore();
+      } else if (winParameters) {
         updateScore();
         result = "you win";
-      } else if (
-        (playerChose === "rock" && cpuChose === "paper") ||
-        (playerChose === "paper" && cpuChose === "scissors") ||
-        (playerChose === "scissors" && cpuChose === "rock")
-      ) {
+      } else {
         result = "you lose";
+        updateScore();
       }
+
+      console.log("compared");
 
       resolve(
         (resultMessage.textContent = result),
-        containerRenderControl(playAgainContainer, "block"),
+        toggleContainerVisibility(playAgainContainer),
         console.log("result resolved", result)
       );
-    }, 1500);
+    }, 2500);
   });
 };
 
 const updateScore = () => {
   console.log("score updated");
   score += 1;
-  scoreElement.textContent = score;
+
+  localStorage.setItem("score", score);
+  scoreElement.textContent = localStorage.getItem("score");
 };
 
-const containerRenderControl = (container, visibility) => {
-  container.style.display = visibility;
+const toggleContainerVisibility = (...containers) => {
+  containers.forEach((container) => {
+    container.classList.toggle("disabled");
+  });
 };
 
 const resetElements = (playerChoiceElement, houseChoiceElement) => {
@@ -111,16 +116,23 @@ const resetElements = (playerChoiceElement, houseChoiceElement) => {
     playerChoiceElement.removeChild(playerChoiceElement.firstChild);
     houseChoiceElement.removeChild(houseChoiceElement.firstChild);
     resultMessage.textContent = "";
-    containerRenderControl(gameBoardContainer, "flex");
-    containerRenderControl(resultsContainer, "none");
-    containerRenderControl(playAgainContainer, "none");
+    toggleContainerVisibility(
+      gameBoardContainer,
+      resultsContainer,
+      playAgainContainer
+    );
   }
 };
 
+// Default Values
+scoreElement.textContent = !localStorage.getItem("score")
+  ? 0
+  : localStorage.getItem("score");
+
 //EventListeners
 gamePieceArray.forEach((gamePiece) => {
-  gamePiece.id.addEventListener("click", () => {
-    gamePiece.play(gamePiece);
+  gamePiece.element.addEventListener("click", () => {
+    play(gamePiece);
   });
 });
 

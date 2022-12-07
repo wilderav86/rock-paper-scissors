@@ -37,35 +37,50 @@
         </div>
         <div class="score-container">
           <p>score</p>
-          <p class="score">0</p>
+          <p class="score"></p>
         </div>
       </header>
       <section class="game-board-container">
         <img src="images/bg-triangle.svg" alt="triangle" />
         <div id="paper" class="paperGradient">
-          <div class="innerCircle">
-            <img src="images/icon-paper.svg" alt="paper" class="icon" />
-          </div>
+          <!-- <div class="innerCircle"> -->
+          <img
+            height="50"
+            src="images/icon-paper.svg"
+            alt="paper"
+            class="icon"
+          />
+          <!-- </div> -->
         </div>
 
         <div id="scissors" class="scissorsGradient">
           <div class="innerCircle">
-            <img src="images/icon-scissors.svg" alt="scissors" class="icon" />
+            <img
+              height="50"
+              src="images/icon-scissors.svg"
+              alt="scissors"
+              class="icon"
+            />
           </div>
         </div>
         <div id="rock" class="rockGradient">
           <div class="innerCircle">
-            <img src="images/icon-rock.svg" alt="rock" class="icon" />
+            <img
+              height="50"
+              src="images/icon-rock.svg"
+              alt="rock"
+              class="icon"
+            />
           </div>
         </div>
       </section>
-      <section class="results-container">
+      <section class="results-container disabled">
         <div class="pick-text">You Picked</div>
         <div class="player-choice"></div>
         <div class="pick-text">The House Picked</div>
         <div class="house-choice"></div>
       </section>
-      <section class="play-again-container">
+      <section class="play-again-container disabled">
         <div class="result-message"></div>
         <button class="play-again-btn">PLAY AGAIN</button>
       </section>
