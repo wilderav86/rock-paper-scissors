@@ -73,13 +73,11 @@ const compare = (playerChoice, cpuChoice) => {
 
       if (playerChose === cpuChose) {
         result = "draw";
-        updateScore();
       } else if (winParameters) {
         updateScore();
         result = "you win";
       } else {
         result = "you lose";
-        updateScore();
       }
 
       console.log("compared");
