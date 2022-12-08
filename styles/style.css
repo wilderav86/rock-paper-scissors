@@ -142,9 +142,9 @@ table {
   background: linear-gradient(hsl(39deg, 89%, 49%), hsl(40deg, 84%, 53%));
   background-clip: padding-box;
   padding: 10px;
-  width: 120px;
-  height: 120px;
-  box-shadow: 0px 7px linear-gradient(hsl(39deg, 89%, 49%), hsl(40deg, 84%, 53%));
+  width: 100px;
+  height: 100px;
+  box-shadow: 0px 5px #b3b3b3;
 }
 
 .scissorsGradient::after {
@@ -163,9 +163,9 @@ table {
   background: linear-gradient(hsl(230deg, 89%, 62%), hsl(230deg, 89%, 65%));
   background-clip: padding-box;
   padding: 10px;
-  width: 120px;
-  height: 120px;
-  box-shadow: 0px 7px linear-gradient(hsl(230deg, 89%, 62%), hsl(230deg, 89%, 65%));
+  width: 100px;
+  height: 100px;
+  box-shadow: 0px 5px #b3b3b3;
 }
 
 .paperGradient::after {
@@ -184,9 +184,9 @@ table {
   background: linear-gradient(hsl(349deg, 71%, 52%), hsl(349deg, 70%, 56%));
   background-clip: padding-box;
   padding: 10px;
-  width: 120px;
-  height: 120px;
-  box-shadow: 0px 7px linear-gradient(hsl(349deg, 71%, 52%), hsl(349deg, 70%, 56%));
+  width: 100px;
+  height: 100px;
+  box-shadow: 0px 5px #b3b3b3;
 }
 
 .rockGradient::after {
@@ -197,8 +197,27 @@ table {
   border-radius: 50%;
 }
 
+.game-board-container {
+  display: grid;
+  place-items: center;
+}
+
+.gamepiece-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  position: relative;
+  width: 75%;
+}
+
+.bg-triangle {
+  position: absolute;
+  width: 75%;
+}
+
 .icon {
-  padding: 1.6rem;
+  padding: 1.3rem;
   background-color: white;
   border-radius: 50%;
   height: 50px;
@@ -209,10 +228,6 @@ table {
   background-color: white;
   border-radius: 50%;
   height: 5.2rem;
-}
-
-.game-board-container {
-  display: flex;
 }
 
 .results-container {
