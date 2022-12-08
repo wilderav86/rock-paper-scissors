@@ -54,7 +54,7 @@ const computerPicks = (houseChoiceElement, cpuChoice) => {
     setTimeout(() => {
       console.log("computer picked", cpuChoice.name);
       resolve(renderPick(houseChoiceElement, cpuChoice));
-    }, 2500);
+    }, 1700);
   });
 };
 
@@ -87,7 +87,7 @@ const compare = (playerChoice, cpuChoice) => {
         toggleContainerVisibility(playAgainContainer),
         console.log("result resolved", result)
       );
-    }, 2500);
+    }, 2300);
   });
 };
 

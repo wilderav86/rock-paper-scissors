@@ -135,51 +135,74 @@ table {
 }
 
 .scissorsGradient {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  place-items: center;
+  position: relative;
+  border-radius: 50%;
+  background: linear-gradient(hsl(39deg, 89%, 49%), hsl(40deg, 84%, 53%));
+  background-clip: padding-box;
+  padding: 10px;
   width: 120px;
   height: 120px;
-  border: 15px solid;
-  border-image: linear-gradient(hsl(39deg, 89%, 49%), hsl(40deg, 84%, 53%)) 1;
+  box-shadow: 0px 7px linear-gradient(hsl(39deg, 89%, 49%), hsl(40deg, 84%, 53%));
+}
+
+.scissorsGradient::after {
+  position: absolute;
+  background: linear-gradient(hsl(39deg, 89%, 49%), hsl(40deg, 84%, 53%));
+  content: "";
+  z-index: -1;
   border-radius: 50%;
 }
 
 .paperGradient {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  place-items: center;
+  position: relative;
+  border-radius: 50%;
+  background: linear-gradient(hsl(230deg, 89%, 62%), hsl(230deg, 89%, 65%));
+  background-clip: padding-box;
+  padding: 10px;
   width: 120px;
   height: 120px;
-  border: 15px solid;
-  border-image: linear-gradient(hsl(230deg, 89%, 62%), hsl(230deg, 89%, 65%)) 1;
+  box-shadow: 0px 7px linear-gradient(hsl(230deg, 89%, 62%), hsl(230deg, 89%, 65%));
+}
+
+.paperGradient::after {
+  position: absolute;
+  background: linear-gradient(hsl(230deg, 89%, 62%), hsl(230deg, 89%, 65%));
+  content: "";
+  z-index: -1;
   border-radius: 50%;
 }
 
 .rockGradient {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  place-items: center;
+  position: relative;
+  border-radius: 50%;
+  background: linear-gradient(hsl(349deg, 71%, 52%), hsl(349deg, 70%, 56%));
+  background-clip: padding-box;
+  padding: 10px;
   width: 120px;
   height: 120px;
-  border: 15px solid;
-  border-image: linear-gradient(hsl(349deg, 71%, 52%), hsl(349deg, 70%, 56%)) 1;
-  border-radius: 50%;
+  box-shadow: 0px 7px linear-gradient(hsl(349deg, 71%, 52%), hsl(349deg, 70%, 56%));
 }
 
-.cyanGradient {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 120px;
-  height: 120px;
-  border: 15px solid;
-  border-image: linear-gradient(hsl(189deg, 59%, 53%), hsl(189deg, 58%, 57%)) 1;
+.rockGradient::after {
+  position: absolute;
+  background: linear-gradient(hsl(349deg, 71%, 52%), hsl(349deg, 70%, 56%));
+  content: "";
+  z-index: -1;
   border-radius: 50%;
 }
 
 .icon {
-  color: #222;
+  padding: 1.6rem;
+  background-color: white;
+  border-radius: 50%;
+  height: 50px;
+  width: 45px;
 }
 
 .innerCircle {
