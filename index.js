@@ -1,25 +1,13 @@
 let score = 0;
 
-//Classes
-class GamePiece {
-  constructor(name) {
-    this.name = name;
-    this.element = document.getElementById(name);
-  }
-}
-
-//Gamepieces
-const rock = new GamePiece("rock");
-const paper = new GamePiece("paper");
-const scissors = new GamePiece("scissors");
-const gamePieceArray = [rock, paper, scissors];
-
 //Elements
 const scoreElement = document.querySelector(".score");
 const playerChoiceElement = document.querySelector(".player-choice");
 const houseChoiceElement = document.querySelector(".house-choice");
+const resultGrid = document.querySelector(".result-grid");
 const resultMessage = document.querySelector(".result-message");
 const playAgainBtn = document.querySelector(".play-again-btn");
+const cpuPickText = document.getElementById("cpu-pick-text");
 
 const gameBoardContainer = document.querySelector(".game-board-container");
 const resultsContainer = document.querySelector(".results-container");
@@ -31,63 +19,67 @@ const play = async (playerChoice) => {
   const randomIndex = Math.floor(Math.random() * 3);
   const cpuChoice = gamePieceArray[randomIndex];
 
-  playerPicks(playerChoiceElement, playerChoice);
-  await computerPicks(houseChoiceElement, cpuChoice);
-  await compare(playerChoice, cpuChoice);
+  toggleContainerVisibilities(gameBoardContainer, resultsContainer, resultGrid);
+  renderPick(playerChoiceElement, playerChoice);
+  await delayedRenderPick(houseChoiceElement, cpuChoice);
+  await updateElementText(cpuPickText, "THE HOUSE PICKED");
+  await delayedCompare(playerChoice, cpuChoice, 2300);
 };
 
+const createGamePiece = (name) => {
+  const element = document.getElementById(name);
+  return { name, element };
+};
+
+const createGamePieces = (...names) => names.map(createGamePiece);
+
 const renderPick = (element, choice) => {
-  console.log("pick rendered");
+  console.log("pick rendered", choice.name);
 
   clonedNode = choice.element.cloneNode(true);
   element.appendChild(clonedNode);
 };
 
-const playerPicks = (playerChoiceElement, playerChoice) => {
-  console.log("player has picked ", playerChoice.name);
-  toggleContainerVisibility(gameBoardContainer, resultsContainer);
-  renderPick(playerChoiceElement, playerChoice);
+const updateElementText = (element, text) => {
+  element.innerText = text;
 };
 
-const computerPicks = (houseChoiceElement, cpuChoice) => {
+const delayedRenderPick = (element, choice, time = 1700) => {
   return new Promise((resolve) => {
     setTimeout(() => {
-      console.log("computer picked", cpuChoice.name);
-      resolve(renderPick(houseChoiceElement, cpuChoice));
-    }, 1700);
+      resolve(renderPick(element, choice));
+    }, time);
   });
 };
 
-const compare = (playerChoice, cpuChoice) => {
-  const playerChose = playerChoice.name;
-  const cpuChose = cpuChoice.name;
+const compare = ({ name: playerChoice }, { name: cpuChoice }) => {
+  if (playerChoice === cpuChoice) {
+    return "DRAW";
+  }
 
+  const playerWins =
+    (playerChoice === "rock" && cpuChoice === "scissors") ||
+    (playerChoice === "paper" && cpuChoice === "rock") ||
+    (playerChoice === "scissors" && cpuChoice === "paper");
+
+  if (playerWins) {
+    updateScore();
+    return "YOU WIN";
+  }
+
+  return "YOU LOSE";
+};
+
+const delayedCompare = (playerChoice, cpuChoice, time) => {
   return new Promise((resolve) => {
     setTimeout(() => {
-      let result = "";
-
-      const winParameters =
-        (playerChose === "rock" && cpuChose === "scissors") ||
-        (playerChose === "paper" && cpuChose === "rock") ||
-        (playerChose === "scissors" && cpuChose === "paper");
-
-      if (playerChose === cpuChose) {
-        result = "draw";
-      } else if (winParameters) {
-        updateScore();
-        result = "you win";
-      } else {
-        result = "you lose";
-      }
-
-      console.log("compared");
-
+      const result = compare(playerChoice, cpuChoice);
       resolve(
         (resultMessage.textContent = result),
-        toggleContainerVisibility(playAgainContainer),
+        toggleContainerVisibilities(playAgainContainer),
         console.log("result resolved", result)
       );
-    }, 2300);
+    }, time);
   });
 };
 
@@ -99,10 +91,11 @@ const updateScore = () => {
   scoreElement.textContent = localStorage.getItem("score");
 };
 
-const toggleContainerVisibility = (...containers) => {
-  containers.forEach((container) => {
-    container.classList.toggle("disabled");
-  });
+const toggleContainerVisibility = (container) =>
+  container.classList.toggle("disabled");
+
+const toggleContainerVisibilities = (...containers) => {
+  containers.map(toggleContainerVisibility);
 };
 
 const resetElements = (playerChoiceElement, houseChoiceElement) => {
@@ -114,18 +107,22 @@ const resetElements = (playerChoiceElement, houseChoiceElement) => {
     playerChoiceElement.removeChild(playerChoiceElement.firstChild);
     houseChoiceElement.removeChild(houseChoiceElement.firstChild);
     resultMessage.textContent = "";
-    toggleContainerVisibility(
+    toggleContainerVisibilities(
       gameBoardContainer,
       resultsContainer,
-      playAgainContainer
+      playAgainContainer,
+      resultGrid
     );
   }
+  updateElementText(cpuPickText, "");
 };
 
 // Default Values
 scoreElement.textContent = !localStorage.getItem("score")
   ? 0
   : localStorage.getItem("score");
+
+const gamePieceArray = createGamePieces("rock", "paper", "scissors");
 
 //EventListeners
 gamePieceArray.forEach((gamePiece) => {
