@@ -3,6 +3,14 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&family=DM+Sans:wght@400;700&display=swap");
 
+//MIXINS
+@mixin mobileBreakPoint {
+  @media screen and (min-width: 700px) {
+    @content;
+  }
+}
+
+//COLORS
 $primary: (
   scissorsGradient: linear-gradient(hsl(39, 89%, 49%), hsl(40, 84%, 53%)),
   paperGradient: linear-gradient(hsl(230, 89%, 62%), hsl(230, 89%, 65%)),
@@ -21,7 +29,15 @@ $primary: (
     margin: 1.3rem;
     width: 100px;
     height: 100px;
+    cursor: pointer;
+
     box-shadow: 0px 5px grayscale($color: #b5b1b1);
+    @include mobileBreakPoint() {
+      width: 190px;
+      height: 190px;
+      margin-left: 3rem;
+      margin-right: 3rem;
+    }
   }
   .#{$name}::after {
     position: absolute;
@@ -40,6 +56,7 @@ $background: rgb(248, 248, 248);
 // background gradient
 $radialGradient: radial-gradient(hsl(214, 47%, 23%), hsl(237, 49%, 15%));
 
+//STYLES
 .main {
   display: flex;
   flex-direction: column;
@@ -110,12 +127,21 @@ $radialGradient: radial-gradient(hsl(214, 47%, 23%), hsl(237, 49%, 15%));
   transform: translateY(12px);
 }
 
-.icon {
-  padding: 1.3rem;
-  background-color: $background;
+.inner-radius {
+  display: grid;
+  place-items: center;
+  background-color: white;
+  width: 90%;
+  aspect-ratio: 1;
   border-radius: 50%;
+}
+
+.icon {
+  background-color: $background;
+  border-radius: 30%;
   height: 50px;
   width: 45px;
+  position: absolute;
 }
 
 .rules-container {
@@ -137,6 +163,45 @@ $radialGradient: radial-gradient(hsl(214, 47%, 23%), hsl(237, 49%, 15%));
   font-size: 1rem;
   font-family: "Barlow Semi Condensed", sans-serif;
   letter-spacing: 0.15rem;
+}
+
+//Game Board Desktop Layout
+
+@include mobileBreakPoint() {
+  //HEADER
+  .header-container {
+    max-width: 60%;
+  }
+  .title {
+    line-height: 1.6rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+  }
+  .score-container {
+    width: 5rem;
+    margin-right: 0.75rem;
+  }
+  .score-title {
+    font-size: 1rem;
+  }
+
+  .score {
+    color: $scoreText;
+    font-size: 3.5rem;
+    font-weight: 700;
+  }
+
+  //GAME PIECES
+  .game-board-container {
+    width: 650px;
+  }
+
+  .icon {
+    height: 85px;
+    width: 70px;
+    object-fit: contain;
+  }
 }
 
 .result-grid {
