@@ -40,6 +40,7 @@
           <p class="score"></p>
         </div>
       </header>
+
       <section class="game-board-container">
         <div class="gamepiece-container">
           <img
@@ -52,7 +53,6 @@
               <img src="images/icon-paper.svg" alt="paper" class="icon" />
             </div>
           </div>
-
           <div id="scissors" class="scissorsGradient">
             <div class="inner-radius">
               <img
@@ -77,27 +77,32 @@
       </section>
 
       <section class="result-grid disabled">
-        <article class="results-container disabled">
-          <div class="choice-container">
-            <div class="player-choice"></div>
-            <div id="player-pick-text" class="pick-text">YOU PICKED</div>
-          </div>
-          <div class="choice-container">
-            <div class="house-choice"></div>
-            <div id="cpu-pick-text" class="pick-text"></div>
-          </div>
-        </article>
-        <article class="play-again-container disabled">
+        <div class="choice-container player">
+          <div class="end-gradient disabled"></div>
+          <div class="player-choice"></div>
+          <div id="player-pick-text" class="pick-text">YOU PICKED</div>
+        </div>
+        <div class="choice-container house">
+          <div class="house-choice"></div>
+          <div id="cpu-pick-text" class="pick-text"></div>
+        </div>
+        <div class="play-again-container disabled">
           <div class="result-message"></div>
           <button class="play-again-btn">PLAY AGAIN</button>
-        </article>
+        </div>
       </section>
+
       <section class="rules-container">
         <button class="rules-btn">RULES</button>
-        <section class="rules-modal disabled">
-          <div class="rules-title">RULES</div>
-          <div class="rules-icon-container"></div>
-        </section>
+      </section>
+      <section class="rules-modal disabled">
+        <div class="rules-title">RULES</div>
+        <img
+          src="images/image-rules.svg"
+          alt="scissors"
+          class="rules-img grayscale"
+        />
+        <button class="close-modal-btn">X</button>
       </section>
     </main>
     <footer class="attribution">

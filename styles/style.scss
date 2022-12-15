@@ -165,49 +165,24 @@ $radialGradient: radial-gradient(hsl(214, 47%, 23%), hsl(237, 49%, 15%));
   letter-spacing: 0.15rem;
 }
 
-//Game Board Desktop Layout
-
-@include mobileBreakPoint() {
-  //HEADER
-  .header-container {
-    max-width: 60%;
-  }
-  .title {
-    line-height: 1.6rem;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    font-size: 2rem;
-  }
-  .score-container {
-    width: 5rem;
-    margin-right: 0.75rem;
-  }
-  .score-title {
-    font-size: 1rem;
-  }
-
-  .score {
-    color: $scoreText;
-    font-size: 3.5rem;
-    font-weight: 700;
-  }
-
-  //GAME PIECES
-  .game-board-container {
-    width: 650px;
-  }
-
-  .icon {
-    height: 85px;
-    width: 70px;
-    object-fit: contain;
-  }
-}
-
 .result-grid {
   display: grid;
   grid-template-rows: repeat(2, 1fr);
-  height: 100%;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-areas: "player house" "result result";
+  place-items: center;
+  // height: 100%;
+}
+
+.result-grid > .player {
+  grid-area: player;
+}
+.result-grid > .house {
+  grid-area: house;
+}
+
+.result-grid > .play-again-container {
+  grid-area: result;
 }
 
 .results-container {
@@ -250,6 +225,133 @@ $radialGradient: radial-gradient(hsl(214, 47%, 23%), hsl(237, 49%, 15%));
   letter-spacing: 0.15rem;
 }
 
+.rules-modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  position: absolute;
+  background-color: white;
+  height: 100%;
+  width: 100%;
+  color: $darkText;
+}
+
 .disabled {
   display: none;
+}
+
+.pending {
+  width: 100px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background-color: $darkText;
+  opacity: 0.8;
+}
+
+.choice-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.end-gradient {
+  position: absolute;
+  height: 150%;
+  aspect-ratio: 1;
+  background-image: radial-gradient(
+    #ebf8e1 25%,
+    #dcdcdcc1 25% 50%,
+    #b3b3b3c1 50% 75%,
+    #b4b4b4c1 75% 100%
+  );
+  border-radius: 50%;
+  opacity: 0.15;
+  transform: translateY(-7px);
+}
+
+//Desktop Layout
+
+@include mobileBreakPoint() {
+  //HEADER
+  .header-container {
+    margin-top: 3rem;
+    max-width: 60%;
+  }
+  .title {
+    line-height: 1.6rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+  }
+  .score-container {
+    width: 5rem;
+    margin-right: 0.75rem;
+  }
+  .score-title {
+    font-size: 1rem;
+  }
+
+  .score {
+    color: $scoreText;
+    font-size: 3.5rem;
+    font-weight: 700;
+  }
+
+  //GAME PIECES
+  .game-board-container {
+    width: 650px;
+    // transform: translateY(20px);
+  }
+
+  .icon {
+    height: 85px;
+    width: 70px;
+    object-fit: contain;
+  }
+
+  .bg-triangle {
+    width: 50%;
+  }
+
+  .rules-container {
+    display: flex;
+    width: 95%;
+    margin: 1rem;
+    justify-content: right;
+  }
+
+  // RESULTS
+
+  .choice-container {
+    display: flex;
+    flex-direction: column-reverse;
+    position: relative;
+  }
+
+  .result-grid {
+    // grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: none;
+    grid-template-areas: "player result house";
+  }
+
+  .result-grid > .player {
+    grid-area: player;
+  }
+  .result-grid > .play-again-container {
+    grid-area: result;
+  }
+  .result-grid > .house {
+    grid-area: house;
+  }
+
+  .pending {
+    width: 170px;
+  }
+
+  .end-gradient {
+    transform: translateY(10px);
+  }
 }

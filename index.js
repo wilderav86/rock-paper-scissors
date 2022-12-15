@@ -1,25 +1,34 @@
 let score = 0;
 
-//Elements
-const scoreElement = document.querySelector(".score");
-const playerChoiceElement = document.querySelector(".player-choice");
-const houseChoiceElement = document.querySelector(".house-choice");
-const resultGrid = document.querySelector(".result-grid");
-const resultMessage = document.querySelector(".result-message");
-const playAgainBtn = document.querySelector(".play-again-btn");
-const cpuPickText = document.getElementById("cpu-pick-text");
+//SELECTORS
 
+////Elements
+const cpuPickText = document.getElementById("cpu-pick-text");
+const endGradient = document.querySelector(".end-gradient");
+const houseChoiceElement = document.querySelector(".house-choice");
+const playerChoiceElement = document.querySelector(".player-choice");
+const resultMessage = document.querySelector(".result-message");
+const scoreElement = document.querySelector(".score");
+
+////Buttons
+const playAgainBtn = document.querySelector(".play-again-btn");
+const rulesBtn = document.querySelector(".rules-btn");
+const closeModalBtn = document.querySelector(".close-modal-btn");
+
+////Containers
 const gameBoardContainer = document.querySelector(".game-board-container");
-const resultsContainer = document.querySelector(".results-container");
 const playAgainContainer = document.querySelector(".play-again-container");
+const resultsContainer = document.querySelector(".results-container");
+const resultGrid = document.querySelector(".result-grid");
+const rulesModal = document.querySelector(".rules-modal");
 
 //Functions
-
 const play = async (playerChoice) => {
   const randomIndex = Math.floor(Math.random() * 3);
   const cpuChoice = gamePieceArray[randomIndex];
 
-  toggleContainerVisibilities(gameBoardContainer, resultsContainer, resultGrid);
+  toggleContainerVisibilities(gameBoardContainer, resultGrid);
+  togglePendingVisibility(houseChoiceElement);
   renderPick(playerChoiceElement, playerChoice);
   await delayedRenderPick(houseChoiceElement, cpuChoice);
   await updateElementText(cpuPickText, "THE HOUSE PICKED");
@@ -28,7 +37,8 @@ const play = async (playerChoice) => {
 
 const createGamePiece = (name) => {
   const element = document.getElementById(name);
-  return { name, element };
+  const winner = false;
+  return { name, element, winner };
 };
 
 const createGamePieces = (...names) => names.map(createGamePiece);
@@ -47,7 +57,10 @@ const updateElementText = (element, text) => {
 const delayedRenderPick = (element, choice, time = 1700) => {
   return new Promise((resolve) => {
     setTimeout(() => {
-      resolve(renderPick(element, choice));
+      resolve(
+        renderPick(element, choice),
+        togglePendingVisibility(houseChoiceElement)
+      );
     }, time);
   });
 };
@@ -76,7 +89,7 @@ const delayedCompare = (playerChoice, cpuChoice, time) => {
       const result = compare(playerChoice, cpuChoice);
       resolve(
         (resultMessage.textContent = result),
-        toggleContainerVisibilities(playAgainContainer),
+        toggleContainerVisibilities(playAgainContainer, endGradient),
         console.log("result resolved", result)
       );
     }, time);
@@ -98,6 +111,11 @@ const toggleContainerVisibilities = (...containers) => {
   containers.map(toggleContainerVisibility);
 };
 
+const togglePendingVisibility = (element) => {
+  console.log("pendingtoggled");
+  element.classList.toggle("pending");
+};
+
 const resetElements = (playerChoiceElement, houseChoiceElement) => {
   console.log("elements reset");
   while (
@@ -109,9 +127,9 @@ const resetElements = (playerChoiceElement, houseChoiceElement) => {
     resultMessage.textContent = "";
     toggleContainerVisibilities(
       gameBoardContainer,
-      resultsContainer,
       playAgainContainer,
-      resultGrid
+      resultGrid,
+      endGradient
     );
   }
   updateElementText(cpuPickText, "");
@@ -134,3 +152,9 @@ gamePieceArray.forEach((gamePiece) => {
 playAgainBtn.addEventListener("click", () => {
   resetElements(playerChoiceElement, houseChoiceElement);
 });
+
+rulesBtn.addEventListener("click", () => toggleContainerVisibility(rulesModal));
+
+closeModalBtn.addEventListener("click", () =>
+  toggleContainerVisibility(rulesModal)
+);
