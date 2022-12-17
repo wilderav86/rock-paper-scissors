@@ -11,37 +11,56 @@
 }
 
 //COLORS
+// $primary: (
+//   scissorsGradient: linear-gradient(hsl(39, 89%, 49%), hsl(40, 84%, 53%)),
+//   paperGradient: linear-gradient(hsl(230, 89%, 62%), hsl(230, 89%, 65%)),
+//   rockGradient: linear-gradient(hsl(349, 71%, 52%), hsl(349, 70%, 56%)),
+// );
+
 $primary: (
-  scissorsGradient: linear-gradient(hsl(39, 89%, 49%), hsl(40, 84%, 53%)),
-  paperGradient: linear-gradient(hsl(230, 89%, 62%), hsl(230, 89%, 65%)),
-  rockGradient: linear-gradient(hsl(349, 71%, 52%), hsl(349, 70%, 56%)),
+  scissorsGradient: (
+    gradient: (
+      linear-gradient(hsl(39, 89%, 49%), hsl(40, 84%, 53%)),
+    ),
+    shadow: hsl(40, 77%, 37%),
+  ),
+  paperGradient: (
+    gradient: linear-gradient(hsl(230, 89%, 62%), hsl(230, 89%, 65%)),
+    shadow: hsl(230, 47%, 39%),
+  ),
+  rockGradient: (
+    gradient: linear-gradient(hsl(349, 71%, 52%), hsl(349, 70%, 56%)),
+    shadow: hsl(349, 53%, 37%),
+  ),
 );
 
-@each $name, $gradient in $primary {
+@each $name, $property in $primary {
+  @debug $property;
   .#{$name} {
     display: grid;
     place-items: center;
     position: relative;
     border-radius: 50%;
-    background: $gradient;
+    background: map-get($property, gradient);
     background-clip: padding-box;
     padding: 10px;
     margin: 1.3rem;
     width: 100px;
     height: 100px;
     cursor: pointer;
-
-    box-shadow: 0px 5px grayscale($color: #b5b1b1);
+    box-shadow: 0px 6px map-get($property, shadow);
+    // box-shadow: 0px 5px grayscale($color: #b5b1b1);
     @include mobileBreakPoint() {
       width: 190px;
       height: 190px;
       margin-left: 3rem;
       margin-right: 3rem;
+      box-shadow: 0px 10px map-get($property, shadow);
     }
   }
   .#{$name}::after {
     position: absolute;
-    background: $gradient;
+    background: map-get($property, gradient);
     content: "";
     z-index: -1;
     border-radius: 50%;
@@ -130,10 +149,11 @@ $radialGradient: radial-gradient(hsl(214, 47%, 23%), hsl(237, 49%, 15%));
 .inner-radius {
   display: grid;
   place-items: center;
-  background-color: white;
+  background-color: $background;
   width: 90%;
   aspect-ratio: 1;
   border-radius: 50%;
+  box-shadow: inset 0 5px 0 rgb(213, 213, 213);
 }
 
 .icon {
@@ -310,6 +330,10 @@ $radialGradient: radial-gradient(hsl(214, 47%, 23%), hsl(237, 49%, 15%));
     height: 85px;
     width: 70px;
     object-fit: contain;
+  }
+
+  .inner-radius {
+    box-shadow: inset 0 10px 0 rgb(213, 213, 213);
   }
 
   .bg-triangle {
