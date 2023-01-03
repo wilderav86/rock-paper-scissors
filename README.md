@@ -1,6 +1,6 @@
 # Frontend Mentor - Rock Paper Scissors Solution
 
-This is a solution to the [Rock paper scissor game challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/rock-paper-scissors-game-pTgwgvgH/hub). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
+This is a solution to the [Rock paper scissor game challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/rock-paper-scissors-game-pTgwgvgH/hub). Frontend Mentor challenges help you improve your coding skills by building realistic projects. It features a mobile first styling structure and persistent score tracker cached to local storage.
 
 ## Table of contents
 
