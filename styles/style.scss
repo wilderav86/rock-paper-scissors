@@ -245,6 +245,8 @@ $radialGradient: radial-gradient(hsl(214, 47%, 23%), hsl(237, 49%, 15%));
   letter-spacing: 0.15rem;
 }
 
+// RULES
+
 .rules-modal {
   display: flex;
   flex-direction: column;
@@ -255,6 +257,30 @@ $radialGradient: radial-gradient(hsl(214, 47%, 23%), hsl(237, 49%, 15%));
   height: 100%;
   width: 100%;
   color: $darkText;
+}
+
+.rules-modal-container {
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  position: absolute;
+  display: grid;
+  place-items: center;
+  background-color: rgba(9, 9, 9, 0.6);
+}
+
+.rules-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+
+.close-modal-btn {
+  background-color: white;
+  border: none;
+  padding: 0;
+  color: rgb(164, 164, 164);
+  font-size: 1.25rem;
+  font-weight: 700;
 }
 
 .disabled {
@@ -345,6 +371,7 @@ $radialGradient: radial-gradient(hsl(214, 47%, 23%), hsl(237, 49%, 15%));
     width: 95%;
     margin: 1rem;
     justify-content: right;
+    z-index: 10;
   }
 
   // RESULTS
@@ -377,5 +404,31 @@ $radialGradient: radial-gradient(hsl(214, 47%, 23%), hsl(237, 49%, 15%));
 
   .end-gradient {
     transform: translateY(10px);
+  }
+
+  .rules-modal {
+    width: 400px;
+    height: 400px;
+    border-radius: 5px;
+    margin-top: auto;
+    display: grid;
+    grid-template-areas:
+      "title.close"
+      "img img img";
+    place-items: center;
+  }
+
+  .rules-modal > .rules-title {
+    grid-area: title;
+    margin-left: 1rem;
+  }
+
+  .rules-modal > .rules-img {
+    grid-area: img;
+  }
+
+  .rules-modal > .close-modal-btn {
+    margin-right: 1rem;
+    grid-area: close;
   }
 }

@@ -20,7 +20,10 @@ const gameBoardContainer = document.querySelector(".game-board-container");
 const playAgainContainer = document.querySelector(".play-again-container");
 const resultsContainer = document.querySelector(".results-container");
 const resultGrid = document.querySelector(".result-grid");
+const rulesModalContainer = document.querySelector(".rules-modal-container");
 const rulesModal = document.querySelector(".rules-modal");
+
+console.log(rulesModalContainer);
 
 //Functions
 const play = async (playerChoice) => {
@@ -30,9 +33,9 @@ const play = async (playerChoice) => {
   toggleContainerVisibilities(gameBoardContainer, resultGrid);
   togglePendingVisibility(houseChoiceElement);
   renderPick(playerChoiceElement, playerChoice);
-  await delayedRenderPick(houseChoiceElement, cpuChoice);
+  await delayedRenderPick(houseChoiceElement, cpuChoice, 1500);
   await updateElementText(cpuPickText, "THE HOUSE PICKED");
-  await delayedCompare(playerChoice, cpuChoice, 2300);
+  await delayedCompare(playerChoice, cpuChoice, 1500);
 };
 
 const createGamePiece = (name) => {
@@ -54,7 +57,7 @@ const updateElementText = (element, text) => {
   element.innerText = text;
 };
 
-const delayedRenderPick = (element, choice, time = 1700) => {
+const delayedRenderPick = (element, choice, time) => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(
@@ -109,6 +112,7 @@ const toggleContainerVisibility = (container) =>
 
 const toggleContainerVisibilities = (...containers) => {
   containers.map(toggleContainerVisibility);
+  console.log("containers", containers);
 };
 
 const togglePendingVisibility = (element) => {
@@ -153,8 +157,10 @@ playAgainBtn.addEventListener("click", () => {
   resetElements(playerChoiceElement, houseChoiceElement);
 });
 
-rulesBtn.addEventListener("click", () => toggleContainerVisibility(rulesModal));
+rulesBtn.addEventListener("click", () =>
+  toggleContainerVisibilities(rulesModalContainer, rulesModal)
+);
 
 closeModalBtn.addEventListener("click", () =>
-  toggleContainerVisibility(rulesModal)
+  toggleContainerVisibilities(rulesModal, rulesModalContainer)
 );
